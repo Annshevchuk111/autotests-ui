@@ -65,3 +65,5 @@ class CreateCourseFormComponent(BaseComponent):
         expect(self.description_input).to_have_value(description)
         expect(self.max_score_input).to_have_value(max_score)
         expect(self.min_score_input).to_have_value(min_score)
+
+
