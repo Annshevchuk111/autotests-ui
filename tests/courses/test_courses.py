@@ -1,11 +1,20 @@
 import pytest
 from pages.courses.courses_list_page import CoursesListPage
 from pages.courses.create_course_page import CreateCoursePage
-
+import allure
+from tools.allure.epics import AllureEpic
+from tools.allure.features import AllureFeature
+from tools.allure.stories import AllureStory
+from allure_commons.types import Severity
 
 @pytest.mark.regression
 @pytest.mark.courses
+@allure.epic(AllureEpic.LMS)
+@allure.feature(AllureFeature.COURSES)
+@allure.story(AllureStory.COURSES)
 class TestCourses:
+    @allure.title("Check displaying empty courses list")
+    @allure.severity(Severity.NORMAL)
     def test_empty_courses_list(self,courses_list_page: CoursesListPage):
         courses_list_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses')
 
@@ -15,6 +24,8 @@ class TestCourses:
         courses_list_page.sidebar.check_visible()
         courses_list_page.navbar.check_visible('username')
 
+    @allure.title("Create course")
+    @allure.severity(Severity.CRITICAL)
     def test_create_course(self,courses_list_page: CoursesListPage, create_course_page: CreateCoursePage):
         create_course_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create")
         create_course_page.course_toolbar.check_visible_create_course_title()
@@ -58,6 +69,60 @@ class TestCourses:
             max_score="100",
             min_score="10"
         )
+
+    @allure.title("Edit course card")
+    def test_edit_course (self,create_course_page: CreateCoursePage,courses_list_page: CoursesListPage):
+
+        create_course_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create')
+
+        create_course_page.image_upload_widget.upload_preview_image('./testdata/files/image.png')
+        create_course_page.image_upload_widget.check_visible(is_image_uploaded=True)
+        create_course_page.create_course_form_component.fill_form(
+            title="Playwright",
+            estimated_time="2 weeks",
+            description="Playwright",
+            max_score="100",
+            min_score="10"
+        )
+        create_course_page.create_course_form_component.check_visible_filled_form(
+            title="Playwright",
+            estimated_time="2 weeks",
+            description="Playwright",
+            max_score="100",
+            min_score="10"
+        )
+        create_course_page.course_toolbar.check_visible(is_create_course_disabled=False)
+        create_course_page.course_toolbar.click_create_course_button()
+        courses_list_page.toolbar_view.check_visible()
+        courses_list_page.course_view.check_visible(
+            index='0',
+            title="Playwright",
+            estimated_time="2 weeks",
+            max_score="100",
+            min_score="10"
+        )
+        courses_list_page.course_menu_component.edit_button(index=0)
+        create_course_page.create_course_form_component.fill_form(
+            title="Python",
+            estimated_time="1 month",
+            description="Python",
+            max_score="5",
+            min_score="2"
+        )
+
+        create_course_page.course_toolbar.click_create_course_button()
+        courses_list_page.course_view.check_visible(
+            title="Python",
+            estimated_time="1 month",
+            max_score="5",
+            min_score="2",
+            index='0'
+        )
+
+
+
+
+
 
     # with sync_playwright() as playwright:
     #     browser = playwright.chromium.launch(headless=False)

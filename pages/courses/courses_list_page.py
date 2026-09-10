@@ -6,6 +6,8 @@ from components.navigation.sidebar_component import SideBarComponent
 from components.views.empty_view_component import EmptyViewComponent
 from components.courses.course_view_component import CourseViewComponent
 from components.courses.courses_list_toolbar_view_component import CoursesListToolbarViewComponent
+from components.courses.course_view_menu_component import CourseViewMenuComponent
+
 
 class CoursesListPage(BasePage):
     def __init__(self,page:Page):
@@ -17,6 +19,7 @@ class CoursesListPage(BasePage):
 
         self.course_view = CourseViewComponent(page)
         self.toolbar_view=CoursesListToolbarViewComponent(page)
+        self.course_menu_component=CourseViewMenuComponent(page)
 
 
     def check_visible_empty_view(self):
