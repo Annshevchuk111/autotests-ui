@@ -1,7 +1,13 @@
 from components.elements.base_element import BaseElement
 from playwright.sync_api import expect
+import allure
 
 class FileInput(BaseElement):
+
+    @property
+    def type_of(self):
+        return 'file_input'
     def set_input_files(self,file:str,nth:int=0,**kwargs):
-        locator=self.get_locator(nth,**kwargs)
-        locator.set_input_files(file)
+        with allure.step(f'Set  {file} to the {self.type_of}  {self.name}'):
+            locator=self.get_locator(nth,**kwargs)
+            locator.set_input_files(file)
