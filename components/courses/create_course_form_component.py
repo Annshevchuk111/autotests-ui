@@ -1,5 +1,7 @@
 from components.base_component import BaseComponent
 from playwright.sync_api import Page,expect
+import allure
+
 
 class CreateCourseFormComponent(BaseComponent):
     def __init__(self,page:Page):
@@ -15,7 +17,7 @@ class CreateCourseFormComponent(BaseComponent):
         self.min_score_input = page.get_by_test_id(
             'create-course-form-min-score-input').locator('input')
 
-
+    @allure.step('Check visible empty create course form')
     def check_visible_empty_form(
             self,
             title:str,
@@ -39,6 +41,7 @@ class CreateCourseFormComponent(BaseComponent):
         expect(self.min_score_input).to_be_visible()
         expect(self.min_score_input).to_have_value(min_score)
 
+    @allure.step('Fill create course form')
     def fill_form(
             self,
             title: str,
@@ -53,7 +56,7 @@ class CreateCourseFormComponent(BaseComponent):
         self.max_score_input.fill(max_score)
         self.min_score_input.fill(min_score)
 
-
+    @allure.step('Check visible filled create course form')
     def check_visible_filled_form(self,
             title: str,
             estimated_time: str,
