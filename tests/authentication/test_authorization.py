@@ -11,6 +11,7 @@ from allure_commons.types import Severity
 
 
 
+
 @pytest.mark.regression
 @pytest.mark.authorization
 @allure.tag( AllureTags.AUTHORIZATION,AllureTags.REGRESSION)
