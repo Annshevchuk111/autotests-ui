@@ -1,4 +1,5 @@
 import pytest
+from tools.routes import AppRoute
 from tools.allure.epics import AllureEpic
 from tools.allure.features import AllureFeature
 from tools.allure.stories import AllureStory
@@ -21,8 +22,10 @@ import allure
 class TestRegistration:
     @allure.title("Registration with correct email,username and password")
     @allure.severity(Severity.CRITICAL)
+
+    @pytest.mark.xdist_group(name="authorization-group")
     def test_successful_registration(self,registration_page: RegistrationPage, dashboard_page: DashboardPage):
-        registration_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration")
+        registration_page.visit(AppRoute.REGISTRATION)
         registration_page.registration_form.fill_registration_form(email='user.name@gmail.com', username='username',password='password')
         registration_page.registration_form.check_visible(email='user.name@gmail.com', username='username',password='password')
         registration_page.click_registration_button()
