@@ -2,6 +2,7 @@ from playwright.sync_api import sync_playwright, Page, Playwright
 import allure
 from config import settings
 from config import Browser
+from tools.playwright.mock import mock_static_resources
 
 
 def initialize_page(
@@ -19,6 +20,7 @@ def initialize_page(
     )
     context.tracing.start(screenshots=True, snapshots=True, sources=True)
     page = context.new_page()
+    #mock_static_resources(page) # Закоментила, тк ту падает изза self.page.goto(url, wait_until="networkidle")
 
     yield page
     context.tracing.stop(path=settings.tracing_dir.joinpath(f'{test_name}.zip'))
