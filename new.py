@@ -1,4 +1,10 @@
-print("hello world py")
-a=1
-b=2
-print(a+b)
+import platform
+import sys
+
+
+print(sys.version)
+
+z=f'{platform.system()}, {platform.release()}'
+print(z)
+
+

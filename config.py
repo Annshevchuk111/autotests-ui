@@ -62,3 +62,8 @@ class Settings(BaseSettings):
         )
 
 settings = Settings.initialize()
+
+items = [f'{key}={value}' for key, value in settings.model_dump().items()]
+properties = '\n'.join(items)
+
+print(items)
