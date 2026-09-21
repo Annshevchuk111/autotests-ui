@@ -1,0 +1,18 @@
+INFO     BASE_PAGE:base_page.py:17 Opening the url https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration
+INFO     BASE_ELEMENT:base_element.py:22 Get locator data-test-id : registration-form-email-input at index 0
+INFO     BASE_ELEMENT:base_element.py:36 Checking input  Email is visible
+INFO     BASE_ELEMENT:base_element.py:22 Get locator data-test-id : registration-form-username-input at index 0
+INFO     BASE_ELEMENT:base_element.py:36 Checking input  Username is visible
+INFO     BASE_ELEMENT:base_element.py:22 Get locator data-test-id : registration-form-password-input at index 0
+INFO     BASE_ELEMENT:base_element.py:36 Checking input  Password is visible
+INFO     BASE_ELEMENT:base_element.py:22 Get locator data-test-id : registration-form-email-input at index 0
+INFO     INPUT:input.py:23 Fill input  Email to value user.name@gmail.com
+INFO     BASE_ELEMENT:base_element.py:22 Get locator data-test-id : registration-form-username-input at index 0
+INFO     INPUT:input.py:23 Fill input  Username to value username
+INFO     BASE_ELEMENT:base_element.py:22 Get locator data-test-id : registration-form-password-input at index 0
+INFO     INPUT:input.py:23 Fill input  Password to value password
+INFO     BASE_ELEMENT:base_element.py:22 Get locator data-test-id : registration-page-registration-button at index 0
+INFO     BASE_ELEMENT:base_element.py:29 Click on button  Registration button
+INFO     BASE_PAGE:base_page.py:17 Opening the url AppRoute.CREATE_COURSE
+INFO     BASE_ELEMENT:base_element.py:22 Get locator data-test-id : create-course-preview-image-upload-widget-input at index 0
+INFO     FILE_INPUT:file_input.py:16 Set  testdata/files/image.png to the file_input  Upload input
