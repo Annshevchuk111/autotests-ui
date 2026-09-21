@@ -38,6 +38,8 @@ jobs:
         run: |
           pytest -m regression --alluredir=allure-results --numprocesses 2
 
+  publish-report:
+    - steps:
       # 5. Шаг для получения истории отчётов Allure, если она существует
       - name: Get Allure history
         uses: actions/checkout@v7  # Опять клонируем репозиторий, чтобы получить историю отчётов
