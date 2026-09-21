@@ -23,7 +23,9 @@ def initialize_browser_state(playwright:Playwright) -> Page:
     page = context.new_page()
 
     registration_page = RegistrationPage(page=page)
-    registration_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
+    registration_page.visit(
+        'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
+    )
 
     registration_page.registration_form.fill_registration_form(
         email=settings.test_user.email,
